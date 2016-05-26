@@ -1,0 +1,41 @@
+{
+  "name": "parse-heroku-foundation",
+  "version": "1.4.0",
+  "description": "Starting template for a Parse app, hosted on Heroku, using Foundation for Apps with Angular",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toddheslin/parse-heroku-foundation"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "~4.11.x",
+    "kerberos": "~0.0.x",
+    "parse": "~1.8.0",
+    "parse-server": "~2.2.2"
+  },
+  "devDependencies": {
+    "front-router": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-develop-server": "^0.5.1",
+    "gulp-if": "^1.2.5",
+    "gulp-load-plugins": "1.0.0-rc.1",
+    "gulp-ng-html2js": "^0.2.0",
+    "gulp-sass": "^2.0.3",
+    "gulp-uglify": "^1.2.0",
+    "gulp-webserver": "^0.9.1",
+    "rimraf": "^2.4.1",
+    "run-sequence": "^1.1.1",
+    "yargs": "^3.15.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "local": "gulp"
+  },
+  "engines": {
+    "node": ">=4.3"
+  }
+}
