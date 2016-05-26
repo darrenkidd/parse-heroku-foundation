@@ -11,13 +11,22 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
+// Analytics setup using Segment.com
+var Analytics = require('analytics-node');
+var segmentWriteKey = '';
+if (!process.env.APP_ID) {
+  var analytics = new Analytics(segmentWriteKey, { flushAt: 1 });
+} else {
+  var analytics = new Analytics(segmentWriteKey);
+}
+
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
-  facebookAppIds : process.env.FACEBOOK_APP_IDS || ['247711508952669']
+  facebookAppIds : process.env.FACEBOOK_APP_IDS || ['']
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:

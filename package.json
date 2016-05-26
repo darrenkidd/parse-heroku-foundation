@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "analytics-node": "^2.1.0",
     "ejs": "^2.4.1",
     "express": "~4.11.x",
     "kerberos": "~0.0.x",

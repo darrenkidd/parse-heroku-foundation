@@ -23,6 +23,7 @@ var isProduction = !!(argv.production);
 var paths = {
   assets: [
     './client/**/*.*',
+    '!./client/index.ejs',
     '!./client/templates/**/*.*',
     '!./client/assets/{scss,js}/**/*.*'
   ],
@@ -43,6 +44,10 @@ var paths = {
     'bower_components/foundation-apps/js/vendor/**/*.js',
     'bower_components/foundation-apps/js/angular/**/*.js',
     '!bower_components/foundation-apps/js/angular/app.js'
+  ],
+  // These files include any extra modules added for the project
+  componentsJS: [
+    'bower_components/angular-segment-analytics/segment.min.js'
   ],
   // These files are for your app's JavaScript
   appJS: [
@@ -130,7 +135,7 @@ gulp.task('sass', function () {
 });
 
 // Compiles and copies the Foundation for Apps JavaScript, as well as your app's custom JS
-gulp.task('uglify', ['uglify:foundation', 'uglify:app'])
+gulp.task('uglify', ['uglify:foundation', 'uglify:app', 'uglify:component'])
 
 gulp.task('uglify:foundation', function(cb) {
   var uglify = $.if(isProduction, $.uglify()
@@ -141,6 +146,19 @@ gulp.task('uglify:foundation', function(cb) {
   return gulp.src(paths.foundationJS)
     .pipe(uglify)
     .pipe($.concat('foundation.js'))
+    .pipe(gulp.dest('./public/assets/js/'))
+  ;
+});
+
+gulp.task('uglify:component', function(cb) {
+  var uglify = $.if(isProduction, $.uglify()
+    .on('error', function (e) {
+      console.log(e);
+    }));
+
+  return gulp.src(paths.componentsJS)
+    .pipe(uglify)
+    .pipe($.concat('component.js'))
     .pipe(gulp.dest('./public/assets/js/'))
   ;
 });

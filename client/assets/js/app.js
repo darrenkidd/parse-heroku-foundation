@@ -11,6 +11,9 @@ var app =
     'foundation.dynamicRouting',
     'foundation.dynamicRouting.animations',
 
+    //analytics
+    'ngSegment',
+
     // My modules
     'HomeModule',
   ])
@@ -18,9 +21,9 @@ var app =
     .run(run)
   ;
 
-  config.$inject = ['$urlRouterProvider', '$locationProvider'];
+  config.$inject = ['$urlRouterProvider', '$locationProvider', 'segmentProvider'];
 
-  function config($urlProvider, $locationProvider) {
+  function config($urlProvider, $locationProvider, segmentProvider) {
     $urlProvider.otherwise('/');
 
     $locationProvider.html5Mode({
@@ -29,6 +32,13 @@ var app =
     });
 
     $locationProvider.hashPrefix('!');
+
+    segmentProvider
+        .setKey('abc')
+        .setCondition(function ($rootScope) {
+            return $rootScope.isProduction;
+        })
+        .setDebug(true)
   }
 
   function run($rootScope, $window) {
@@ -36,6 +46,6 @@ var app =
 
     $rootScope.user = {};
 
-  };
+  }
 
 })();

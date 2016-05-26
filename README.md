@@ -8,6 +8,13 @@ Thanks to [CreatityKills/foundations-apps-template](https://github.com/Creativit
 
 Read the Foundation for Apps docs here: http://foundation.zurb.com/apps/docs/
 
+## Analytics
+
+Using the Segment Angular analytics module here: https://github.com/aleross/angular-segment-analytics
+
+Using the Segment node module as per docs here:
+https://segment.com/docs/libraries/node
+
 ## Requirements
 
 You'll need the following software installed to get started.
