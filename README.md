@@ -25,6 +25,11 @@ You'll need the following software installed to get started.
   - [Gulp](http://gulpjs.com/) and [Bower](http://bower.io): Run `npm install -g gulp bower`
     - Depending on how Node is configured on your machine, you may need to run `sudo npm install -g gulp bower` instead, if you get an error with the first command.
 
+### Manual changes required
+In directory `bower_components/foundation-apps/js/angular/components/iconic/iconic.js`
+Find `var assetPath = 'assets/img/iconic/;` on line 12 and replace with:
+`var assetPath = 'public/assets/img/iconic/';`
+As we are not checking in bower into the repository this will need to be changed manually and updated when there is an `bower install` command run.
 
 ### For Local Development
 
@@ -42,8 +47,17 @@ You'll need the following software installed to get started.
 * Log in with the [Heroku Toolbelt](https://toolbelt.heroku.com/) and create an app: `heroku create`
 * Use the [MongoLab addon](https://elements.heroku.com/addons/mongolab): `heroku addons:create mongolab:sandbox --app YourAppName`
 * By default it will use a path of /parse for the API routes.  To change this, or use older client SDKs, run `heroku config:set PARSE_MOUNT=/1`
-* Deploy it with: `git push heroku master`
+* Deploy it with: `git push heroku master` (if not using Github auto-push)
 You can choose to connect your Heroku account to Github for when you pull changes into your production branch. Or you can push directly from the command line to Heroku as needed.
+* Create unique keys and add as environment variables on heroku using pattern `heroku config:set KEY_NAME=xxxxxxx`
+
+_By tradition, Parse keys are 40 characters long and letters only_
+
+The following keys are mandatory:
+`heroku config:set APP_ID=xxxxxxx`
+`heroku config:set MASTER_KEY=xxxxxxx`
+`heroku config:set SERVER_URL=xxxxxxx`
+`heroku config:set PARSE_MOUNT=/parse`
 
 # Using it
 

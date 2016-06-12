@@ -4,6 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -13,7 +14,7 @@ if (!databaseUri) {
 
 // Analytics setup using Segment.com
 var Analytics = require('analytics-node');
-var segmentWriteKey = '';
+var segmentWriteKey = 'x';
 if (!process.env.APP_ID) {
   var analytics = new Analytics(segmentWriteKey, { flushAt: 1 });
 } else {
@@ -24,7 +25,7 @@ var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
-  masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
+  masterKey: process.env.MASTER_KEY || 'myMasterKey', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   facebookAppIds : process.env.FACEBOOK_APP_IDS || ['']
 });
@@ -42,6 +43,8 @@ app.use('/public', express.static(path.join(__dirname, '/public')));
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
+app.use(bodyParser.json());
+app.disable('quiet');
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {

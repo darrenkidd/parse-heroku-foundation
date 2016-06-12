@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "analytics-node": "^2.1.0",
+    "body-parser": "^1.15.1",
     "ejs": "^2.4.1",
     "express": "~4.11.x",
     "kerberos": "~0.0.x",
@@ -34,7 +35,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "local": "gulp"
+    "local": "gulp",
+    "dashboard": "parse-dashboard --appId myAppId --masterKey myMasterKey --serverURL 'http://localhost:1337/parse' --appName 'Your app name'"
   },
   "engines": {
     "node": ">=4.3"
