@@ -38,7 +38,7 @@ config = {
 
   // Production (Heroku)
   production: {
-    url: process.env.SERVER_URL,
+    url: process.env.SERVER_URL + '/blog',
     mail: {
       transport: 'SMTP',
       options: {
