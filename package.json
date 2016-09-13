@@ -1,6 +1,6 @@
 {
   "name": "parse-heroku-foundation",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Starting template for a Parse app, hosted on Heroku, using Foundation for Apps with Angular",
   "main": "index.js",
   "repository": {
@@ -11,8 +11,10 @@
   "dependencies": {
     "analytics-node": "^2.1.0",
     "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.4.1",
     "express": "~4.14.x",
+    "foreman": "^2.0.0",
     "kerberos": "~0.0.x",
     "parse": "~1.9.1",
     "parse-server": "~2.2.2"
@@ -34,9 +36,9 @@
     "yargs": "^5.0.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nf start",
     "local": "gulp",
-    "dashboard": "parse-dashboard --appId myAppId --masterKey myMasterKey --serverURL 'http://localhost:1337/api' --appName 'Your app name'"
+    "dashboard": "parse-dashboard --config dashboard.config.json"
   },
   "engines": {
     "node": ">=4.3"
