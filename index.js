@@ -52,11 +52,13 @@ app.get('/templates/:name', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/templates/' + req.params.name));
 });
 
-var port = process.env.PORT;
 var httpServer = require('http').createServer(app);
-httpServer.listen(port, function() {
-    console.log(process.env.APP_NAME + ' running on port ' + port + '.');
-});
+ParseServer.createLiveQueryServer(httpServer); // This will enable the Live Query real-time server
 
-// This will enable the Live Query real-time server
-ParseServer.createLiveQueryServer(httpServer);
+/*
+* Uncomment the server start function bellow if Ghost isn't running
+*/
+
+// httpServer.listen(port, function() {
+//     console.log(process.env.APP_NAME + ' running on port ' + process.env.PORT + '.');
+// });
