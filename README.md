@@ -56,8 +56,8 @@ _By tradition, Parse keys are 40 characters long and letters only_
 The following keys are mandatory:
 `heroku config:set APP_ID=xxxxxxx`
 `heroku config:set MASTER_KEY=xxxxxxx`
-`heroku config:set SERVER_URL=xxxxxxx`
-`heroku config:set PARSE_MOUNT=/parse`
+`heroku config:set SERVER_URL=xxxxxxx/api`
+`heroku config:set PARSE_MOUNT=/api`
 
 # Using it
 
