@@ -4,15 +4,17 @@ var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var ghost = require('ghost'); // Ghost blogging platform as needed
+require('ghost/core/server/overrides'); // partial fix for ghost
 var Analytics = require('analytics-node'); // Analytics setup using Segment.com
 
 var api = new ParseServer({
-  databaseURI: process.env.DATABASE_URI || process.env.MONGODB_URI,
+  databaseURI: process.env.MONGODB_URI,
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID,
   appName: process.env.APP_NAME,
   masterKey: process.env.MASTER_KEY,
-  serverURL: process.env.SERVER_URL,  // Don't forget to change to https if needed
+  serverURL: process.env.SERVER_URL + '/api',  // Don't forget to change to https if needed
   publicServerURL: process.env.SERVER_URL // Required for forgot password emails
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
@@ -31,6 +33,14 @@ app.disable('quiet'); // Heroku logging
 app.use(mountPath, api);
 
 var analytics = new Analytics(process.env.SEGMENT_KEY);
+
+// Set up Ghost blog
+ghost({
+  config: path.join(__dirname, 'ghost.config.js')
+}).then(function (ghostServer) {
+    app.use(ghostServer.config.paths.subdir, ghostServer.rootApp);
+    ghostServer.start(app);
+});
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {

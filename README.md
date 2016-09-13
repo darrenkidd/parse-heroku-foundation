@@ -46,7 +46,7 @@ As we are not checking in bower into the repository this will need to be changed
 ### Getting Started With Heroku + Mongolab Development
 * Log in with the [Heroku Toolbelt](https://toolbelt.heroku.com/) and create an app: `heroku create`
 * Use the [MongoLab addon](https://elements.heroku.com/addons/mongolab): `heroku addons:create mongolab:sandbox --app YourAppName`
-* By default it will use a path of /parse for the API routes.  To change this, or use older client SDKs, run `heroku config:set PARSE_MOUNT=/1`
+* By default it will use a path of /api for the API routes.  To change this, or use older client SDKs, run `heroku config:set PARSE_MOUNT=/[edit this]`
 * Deploy it with: `git push heroku master` (if not using Github auto-push)
 You can choose to connect your Heroku account to Github for when you pull changes into your production branch. Or you can push directly from the command line to Heroku as needed.
 * Create unique keys and add as environment variables on heroku using pattern `heroku config:set KEY_NAME=xxxxxxx`
@@ -54,10 +54,14 @@ You can choose to connect your Heroku account to Github for when you pull change
 _By tradition, Parse keys are 40 characters long and letters only_
 
 The following keys are mandatory:
-`heroku config:set APP_ID=xxxxxxx`
-`heroku config:set MASTER_KEY=xxxxxxx`
-`heroku config:set SERVER_URL=xxxxxxx/api`
-`heroku config:set PARSE_MOUNT=/api`
+```
+heroku config:set DATABASE_URI=
+heroku config:set APP_ID=myAppId
+heroku config:set MASTER_KEY=myMasterKey
+heroku config:set SERVER_URL=https://yourappname/herokuapp.com
+heroku config:set PARSE_MOUNT=/api
+heroku config:set SEGMENT_KEY=update
+```
 
 # Using it
 
@@ -90,3 +94,22 @@ curl -X POST \
   -d '{}' \
   http://localhost:1337/parse/functions/hello
 ```
+
+# Ghost Blog
+Ghost has been added as a blog and CMS for your web application. A huge thanks to [cobyism](https://github.com/cobyism/ghost-on-heroku) for putting this together.
+
+You can set your environment variables for the Ghost blog within the `.env` file. When in production you can add them to Heroku here:
+```
+heroku config:set S3_ACCESS_KEY_ID=XXXXXXX
+heroku config:set S3_ACCESS_SECRET_KEY=XXXXXXX
+heroku config:set S3_BUCKET_NAME=XXXXXXX
+heroku config:set S3_BUCKET_REGION=XXXXXXX
+heroku config:set S3_ASSET_HOST_URL=XXXXXXX
+heroku config:set MAILGUN_SMTP_LOGIN=XXXXXXX
+heroku config:set MAILGUN_SMTP_PASSWORD=XXXXXXX
+
+```
+You will also need to use the Heroku postgres addon.
+`heroku addons:create heroku-postgresql:hobby-dev`
+
+This will automatically create a new environment variable called `DATABASE_URL`. Don't confused this with the environment variable for the Parse mongo database called `MONGO_URI`;

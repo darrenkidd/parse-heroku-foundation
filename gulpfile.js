@@ -12,7 +12,7 @@ var gulp     = require('gulp');
 var rimraf   = require('rimraf');
 var router   = require('front-router');
 var sequence = require('run-sequence');
-var server   = require('gulp-develop-server');
+var foreman = require('gulp-foreman');
 
 // Check for --production flag
 var isProduction = !!(argv.production);
@@ -176,9 +176,9 @@ gulp.task('uglify:app', function() {
   ;
 });
 
-// https://www.npmjs.com/package/gulp-develop-server
+//https://www.npmjs.com/package/gulp-foreman
 gulp.task('server', ['build'], function() {
-  server.listen( { path: './index.js' } );
+  foreman();
 });
 
 // builds your entire app once, without starting a server
