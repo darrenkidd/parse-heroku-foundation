@@ -8,7 +8,7 @@ let express = require('express'),
     Analytics = require('analytics-node'); // Analytics setup using Segment.com
 
 let api = new ParseServer({
-  databaseURI: process.env.MONGODB_URI,
+  databaseURI: process.env.MONGODB_URI || process.env.DATABASE_URI,
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID,
   appName: process.env.APP_NAME,
