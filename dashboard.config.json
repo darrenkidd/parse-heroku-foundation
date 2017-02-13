@@ -1,10 +1,23 @@
 {
   "apps": [
     {
-      "serverURL": "http://localhost:1337/api",
-      "appId": "myAppId",
+      "serverURL": "https://my-app.herokuapp.com/api",
+      "appId": "my-app",
       "masterKey": "myMasterKey",
-      "appName": "Local"
+      "appName": "My App (Heroku)"
+    },
+    {
+      "serverURL": "https://my-app-c9username.c9users.io/api",
+      "appId": "my-app",
+      "masterKey": "myMasterKey",
+      "appName": "My App (Cloud9)"
+    }
+
+  ],
+  "users": [
+    {
+      "user":"testing",
+      "pass":"P@ssw0rd"
     }
   ]
 }

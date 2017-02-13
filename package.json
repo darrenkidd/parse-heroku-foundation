@@ -45,7 +45,7 @@
     "postinstall": "ncp node_modules/Casper content/themes/casper",
     "start": "nf start",
     "local": "gulp",
-    "dashboard": "parse-dashboard --config dashboard.config.json"
+    "dashboard": "parse-dashboard --config dashboard.config.json --allowInsecureHTTP --port 8081"
   },
   "engines": {
     "node": "4.5"
