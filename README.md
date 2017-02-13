@@ -6,6 +6,14 @@ For more information on what Todd's project is and how to set it up, see the [RE
 
 # Set Up
 
+## First Steps
+
+Open a new terminal and type the following at the prompt:
+
+    $ npm install
+
+This might take some time.
+
 ## Parse Dashboard
 
 To get the Parse Dashboard up and running, edit the `dashboard.config.json` file and add in the correct information for your app.
@@ -18,13 +26,15 @@ Once this is done, go to **Cloud 9** &gt; **Preferences** &gt; **Project Setting
 
 ![Create Dashboard runner](docs/DashboardRunner.png)
 
-| **Name** | Dashboard |
-| **Command** | `npm run dashboard` |
-| **CWD** | / |
-| **Debug** | &lt;empty&gt; |
-| **Runner** | Shell command |
-| **Default** | &lt;empty&gt; |
-| **ENV** | &lt;empty&gt; |
+| Setting Name | Value               |
+| ------------ |---------------------|
+| **Name**     | Dashboard           |
+| **Command**  | `npm run dashboard` |
+| **CWD**      | /                   |
+| **Debug**    | &lt;empty&gt;       |
+| **Runner**   | Shell command       |
+| **Default**  | &lt;empty&gt;       |
+| **ENV**      | &lt;empty&gt;       |
 
 Click _Run_ and go to both URLs to test. You will need to log in with the username and password provided in the Dashboard config file.
 

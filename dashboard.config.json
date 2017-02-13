@@ -1,16 +1,16 @@
 {
   "apps": [
     {
-      "serverURL": "https://my-app.herokuapp.com/api",
-      "appId": "my-app",
+      "serverURL": "https://parse-heroku-foundation.herokuapp.com/api",
+      "appId": "phk",
       "masterKey": "myMasterKey",
-      "appName": "My App (Heroku)"
+      "appName": "Dashboard (Heroku)"
     },
     {
-      "serverURL": "https://my-app-c9username.c9users.io/api",
-      "appId": "my-app",
+      "serverURL": "https://parse-heroku-foundation-darrenkidd.c9users.io/api",
+      "appId": "phk",
       "masterKey": "myMasterKey",
-      "appName": "My App (Cloud9)"
+      "appName": "Dashboard (Cloud9)"
     }
 
   ],
